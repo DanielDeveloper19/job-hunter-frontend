@@ -9,7 +9,10 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "next": "16.1.1",
+    "@aws-amplify/adapter-nextjs": "^1.7.1",
+    "@aws-amplify/auth": "^6.18.0",
+    "aws-amplify": "^6.4.3",
+    "next": "^16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },

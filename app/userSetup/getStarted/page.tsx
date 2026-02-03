@@ -22,7 +22,7 @@ export default function Page() {
         {/* Call to Action */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
   <a 
-    href="https://us-east-2kblsbxfoy.auth.us-east-2.amazoncognito.com/login?client_id=1k3mpm9tbsmp96m9q2qjp4j438&response_type=code&scope=email+openid+phone&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2FhomePage" 
+    href="https://us-east-2kblsbxfoy.auth.us-east-2.amazoncognito.com/login?client_id=1k3mpm9tbsmp96m9q2qjp4j438&response_type=code&scope=email+openid+phone+profile&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2FhomePage" 
     className="px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 hover:shadow-xl transition-all active:scale-95 text-center"
   >
     Get Started

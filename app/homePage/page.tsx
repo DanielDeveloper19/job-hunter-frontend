@@ -1,6 +1,40 @@
+"use client";
+import { useEffect, useState } from 'react';
+import { fetchAuthSession } from 'aws-amplify/auth';
+import { useRouter } from 'next/navigation'; // To clean the URL afterward
 import Link from 'next/link';
 
+
+
+
 export default function HomePage() {
+
+//For token management ---------------------
+  const [token, setToken] = useState<string | null>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleAuth = async () => {
+      try {
+        // 1. This call triggers the code -> token exchange
+        const session = await fetchAuthSession();
+        const jwt = session.tokens?.idToken?.toString();
+
+        if (jwt) {
+          setToken(jwt);
+          // 2. SUCCESS! Now manually clean the URL so the 'code' disappears
+          // This keeps your UI clean and prevents re-using the code
+          router.replace('/homePage'); 
+          console.log("Authenticated! JWT is ready.");
+        }
+      } catch (err) {
+        console.error("Auth exchange failed:", err);
+      }
+    };
+
+    handleAuth();
+  }, [router]);
+// ------------------------------------
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
@@ -10,11 +44,11 @@ export default function HomePage() {
         </div>
         <div className="hidden md:flex gap-8 text-slate-600 font-medium">
           <a href="#" className="hover:text-blue-600 transition">Find Jobs</a>
-          <a href="#" className="hover:text-blue-600 transition">Companies</a>
+          <a href="/userSetup/createUser" className="hover:text-blue-600 transition">Modify Profile info & Preferences</a>
           <a href="#" className="hover:text-blue-600 transition">Salaries</a>
         </div>
         <Link href="/login" className="font-semibold text-slate-700 hover:text-blue-600">
-          Login
+          Logout
         </Link>
       </nav>
 
